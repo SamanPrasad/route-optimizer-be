@@ -23,13 +23,11 @@ class NodeService
 
     public function create($data)
     {
-        DB::transaction(function () use ($data) {
-            $node = new Node();
-            $node->name = $data['name'];
-            $node->save();
+        $node = new Node();
+        $node->name = $data['name'];
+        $node->save();
 
-            return $node->load('edges');
-        });
+        return $node->load('edges');
     }
 
     public function shortestPath($graph, $source)
